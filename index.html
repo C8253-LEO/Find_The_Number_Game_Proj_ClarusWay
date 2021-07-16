@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess The Number</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h2 class="header_top">Guess The Number (1 - 100)</h2>
+      <div class="box__input">
+        <input type="number" id="guess" style="text-align: center" />
+        <button type="button" onclick="checkFunction()" id="check_button">
+          Check
+        </button>
+      </div>
+      <p id="result"></p>
+      <img src="./images/magic_hat.png" alt="" width="20%" />
+      <h5 class="header__bottom">Write the number.</h5>
+      <p>Number of attempts: <span id="span_counter">0</span></p>
+    </div>
+
+    <script>
+      const randomNumber = Math.floor(Math.random() * 100 + 1);
+      // console.log(randomNumber);
+      const guessResult = document.getElementById("result");
+
+      var count = 0;
+
+      function checkFunction() {
+        const guessNumber = document.getElementById("guess").value;
+        // const guessNumber = document.querySelector("#guess").value;
+        // console.log(guessNumber);
+        document.getElementById("guess").value = "";
+        count += 1;
+        document.querySelector("#span_counter").innerHTML = count;
+
+        if (guessNumber < randomNumber) {
+          // alert("Try higher");
+          guessResult.textContent = "Too Low...";
+          guessResult.style.color = "red";
+        } else if (guessNumber > randomNumber) {
+          // alert("Try Lower");
+          guessResult.textContent = "Too High...";
+          guessResult.style.color = "red";
+        } else {
+          // alert("Congrat!");
+          guessResult.textContent = "Congratulations!!!";
+          guessResult.style.color = "green";
+          document.querySelector("#span_counter").textContent = "0";
+        }
+      }
+    </script>
+  </body>
+</html>
